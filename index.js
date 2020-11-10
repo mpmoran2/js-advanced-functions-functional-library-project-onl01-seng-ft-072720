@@ -133,16 +133,16 @@ const fi = (function() {
       return Object.values(collection)
     },
 
-    functions: function(collection) {
-      let array = Object.entries(collection);
-      let result = [];
-      for (let element of array) {
-        if (typeof element[1] === "function") {
+    functions: function(obj) {
+      const functionNames = []
 
-          result.push(element[0])
+      for (let key in obj) {
+        if (typeof obj[key] === "function"){
+          functionNames.push(key)
         }
       }
-      return result.sort()
+
+      return functionNames.sort()
     },
 
   }
