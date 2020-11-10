@@ -134,18 +134,18 @@ const fi = (function() {
     },
 
     functions: function(obj) {
-      const functionNames = []
+      const functionNames = [];
 
       for (let key in obj) {
         if (typeof obj[key] === "function"){
-          functionNames.push(key)
+          functionNames.push(key);
         }
       }
 
-      return functionNames.sort()
+      return functionNames.sort();
     },
 
-  }
+  };
 })()
 
 fi.libraryMethod()
