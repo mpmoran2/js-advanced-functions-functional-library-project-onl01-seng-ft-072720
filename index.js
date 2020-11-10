@@ -106,22 +106,22 @@ const fi = (function() {
       return result
     },
 
-    uniq: function(collection, bool, iteratee) {
-      if (!iteratee) {
-        return [...new Set(collection)]
-      }else{
-        let modulos = []
-        let solution = [];
-
-        for(let element of collection) {
-          let result = iteratee(element)
-
-          if(!modulos.some(x => x === result)){
-            modulos.push(result)
-            solution.push(element)
+    uniq: function(collection, sorted=false, iteratee=false) {
+      if (sorted) {
+        return fi.uniqSorted(collection, iteratee)
+      } else if (!iteratee) {
+        return Array.from(new Set(collection))
+      } else {
+        const modifiedVals = new Set()
+        const uniqVals = new Set()
+        for (let val of collection) {
+          const moddedVal = iteratee(val)
+          if (!modifiedVals.has(moddedVal)) {
+            modifiedVals.add(moddedVal)
+            uniqVals.add(val)
           }
         }
-        return solution;
+        return Array.from(uniqVals)
       }
     },
 
